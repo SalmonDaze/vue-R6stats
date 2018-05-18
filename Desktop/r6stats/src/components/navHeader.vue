@@ -1,6 +1,7 @@
 <template>
-  <div class="nav">
-    <div :class="{'nav-slide':show,'nav-fix':!show}">
+   <div class="nav">
+  <transition name="fade"><div class='overlayer' v-if='show' @click='show=false'></div></transition>
+    <div :class="{'nav-slide':show}">
       <div class='nav-more' @click="showMenu">
         <i class="el-icon-menu"></i>
       </div>
@@ -12,7 +13,7 @@
       </div>
     </div>
     <nav-menu :show-menus='show'></nav-menu>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -28,16 +29,7 @@ export default {
     }
   },
   created(){
-        this.$http({
-          method: "GET",
-          url: `https://r6db.com/api/v2/players?name=ryan&platform=pc`,
-          headers: {
-              'x-app-id': '5e23d930-edd3-4240-b9a9-723c673fb649',
-              'accept': 'application/json'
-          }
-      }).then(function(res) {
-          console.log(res)
-      });
+        
   },
   methods:{
     showMenu(){
@@ -52,23 +44,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.nav-fix{
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: all .3s ease;
-    z-index: 6;
+.overlayer{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index:5;
+    opacity: 0.80;
+    background: black;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 .nav{
   width:100%;
   height:50px;
   background:rgba(255,255,255,255.95);
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
-}
-.nav-slide{
-  transition: all .3s ease;
-  transform: translateX(200px);
 }
 .nav-more{
   margin-left:20px;
@@ -89,5 +85,10 @@ export default {
   float:right;
   margin-top:-10px;
   margin-right:20px;
+}
+.menu-shade{
+    width:100%;
+    height: 100%;
+    background: black;
 }
 </style>

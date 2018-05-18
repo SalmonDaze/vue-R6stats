@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <nav-header></nav-header>
+    <index></index>
   </div>
 </template>
 
 <script>
 import navHeader from './components/navHeader.vue'
 import navMenu from './components/menu.vue'
+import index from './components/index.vue'
 export default {
   name: 'App',
-  components:{navHeader,navMenu},
+  components:{index},
 }
 </script>
 
