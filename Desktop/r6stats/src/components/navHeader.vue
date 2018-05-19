@@ -6,7 +6,7 @@
         <i class="el-icon-menu"></i>
       </div>
       <div class='nav-title'>
-        <span>战绩查询</span>
+        <span v-text='pageTitle'></span>
       </div>
       <div class='nav-login'>
         <i class='el-icon-mobile-phone'></i>
@@ -42,7 +42,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .overlayer{
     position:fixed;
@@ -57,7 +56,7 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition: opacity .3s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to{
   opacity: 0;
 }
 .nav{

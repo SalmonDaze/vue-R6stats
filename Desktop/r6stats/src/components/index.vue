@@ -1,8 +1,8 @@
 <template>
     <div class='index'>
-        <nav-header></nav-header>
+        <nav-header page-title='战绩查询'></nav-header>
         <img src='../assets/logo.png' class='logo'>
-        <el-input placeholder="请输入Uplay名字" v-model="playerId" class="input-with-select">
+        <el-input placeholder="请输入Uplay名字" v-model="name" class="input-with-select">
             <el-select v-model="select" slot="prepend" placeholder="请选择" class='el-server'>
             <el-option  label="PC" value="1"></el-option>
             <el-option  label="PS4" value="2"></el-option>
@@ -14,6 +14,7 @@
 </template>
 <script>
 import navHeader from './navHeader.vue'
+import {mapState} from 'vuex'
 export default{
     name:'index',
     components:{
@@ -21,38 +22,52 @@ export default{
     },
     data(){
         return{
+            name:'',
             select:'',
-            playerId:'',
-            server:'',
+            content:[],
         }
+    },
+    computed:{
     },
     methods:{
         search(){
+            this.$store.state.playername = this.name
             switch(this.select){
                 case '1':
-                this.server = 'pc'
-                break;
+                this.platform = 'pc'
+                break
                 case '2':
-                this.server = 'ps4'
-                break;
+                this.platform = 'ps4'
+                break
                 case '3':
-                this.server = 'xbox'
-                break;
+                this.platform = 'xbox'
+                break
                 default:
                 console.log('请选择正确区服')
-                break;
+                return
+                break
             }
             this.$http({
                 method: "GET",
-                url: `https://r6db.com/api/v2/players?id=${this.playerId}`,
+                url: `https://r6db.com/api/v2/players/?name=${this.name}&platform=${this.platform}`,
                 headers: {
                     'x-app-id': '5e23d930-edd3-4240-b9a9-723c673fb649',
                     'accept': 'application/json',
                 }
-            }).then(function(res) {
-                console.log(JSON.stringify(res))
-            });
-        }
+            }).then((res)=>{
+                this.$store.state.playerId = res.data[0].id
+                this.$store.state.platform = this.platform
+            }).then(()=>{
+                this.$router.push({
+                name:'player',
+                query:{
+                    id:this.$store.state.playerId,
+                }
+            })
+            })
+            
+        },
+
     }
 }
 </script>
