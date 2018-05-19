@@ -60,6 +60,8 @@ export default {
   opacity: 0;
 }
 .nav{
+  position: fixed;
+  z-index:5;
   width:100%;
   height:50px;
   background:rgba(255,255,255,255.95);

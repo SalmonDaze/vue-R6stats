@@ -61,7 +61,7 @@ export default{
                 this.$router.push({
                 name:'player',
                 query:{
-                    id:this.$store.state.playerId,
+                    id:this.$store.state.playerId
                 }
             })
             })

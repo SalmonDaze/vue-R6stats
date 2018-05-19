@@ -8,5 +8,10 @@ export default new Vuex.Store({
         platform:'',
         playername:'',
         playerDetail:[],
+        content:{
+            data:{
+                level:''
+            },
+        },
     }
 })

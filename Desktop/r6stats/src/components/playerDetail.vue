@@ -1,34 +1,50 @@
 <template>
-    <div class='player-bg'>
     <div class='player' v-loading ='loading'>
-        <nav-header :page-title="`${this.$store.state.playername}的战绩`"></nav-header>
+        <nav-header :page-title="`${playername}的战绩`"></nav-header>
         <div class='player-container'>
             <div class='player-detail'>
-                <img class='player-avatar' :src='avatar'></div>
-                <div class='player-name'><span>{{this.$store.state.playername}}</span><div class='player-level'>{{content.data.level}}</div></div>
-                <div><span class='player-platform'>{{this.$store.state.platform}}</span></div>
+                <img class='player-avatar' :src='avatar'>
+                <div class='player-name'><span>{{playername}}</span><div class='player-level'>{{content.data.level}}</div></div>
+                <div class='player-rank'>
+                    <div class='player-h'>MMR</div><span class='player-hData'>{{parseInt(content.data.rank.apac.mmr)}}</span>
+                    <div class='player-h'>Rank</div><span class='player-hData'>#{{(content.data.lastPlayed.ranked)}}</span>
+                </div>
+                <div  class='player-zl'> 
+                    <ul>
+                        <li><i class="el-icon-time">游戏时间</i><p style='text-align:center'>{{getGameTime(content.data.stats.general.timePlayed)}}小时</p></li>
+                        <li><i class="el-icon-location">平台</i><p style='text-align:center'>{{platform.toUpperCase()}}</p></li>
+                        <li><i class="el-icon-view">K/D</i><p style='text-align:center'>{{(content.data.stats.general.kills/content.data.stats.general.deaths).toFixed(2)}}</p></li>
+                        <li><i class="el-icon-star-off">胜率</i><p style='text-align:center'>{{(content.data.stats.general.won/content.data.stats.general.lost).toFixed(2)}}</p></li>
+                    </ul>
+                </div>
             </div>
+                <div class='player-tabs'>
+                        <router-link :to='{name:"playerData"}'>数据总览</router-link>
+                        <router-link to=''>干员数据</router-link>
+                        <router-link to=''>段位信息</router-link>
+                </div>
         </div>
-    </div>
+        <router-view></router-view>
     </div>
 </template>
 <script>
 import navHeader from './navHeader.vue'
+import {mapState} from 'vuex'
 export default{
     data(){
         return{
             loading:false,
             avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$store.state.playerId}/default_146_146.png`,
-            content:{
-                data:{
-                    level:''
-                },
-            },
         }
     },
     components:{
         navHeader,
     },
+    computed:mapState({
+        content:state=>state.content,
+        platform:state=>state.platform,
+        playername:state=>state.playername,
+    }),
     methods:{
         getData(){
             this.$http({
@@ -39,9 +55,11 @@ export default{
                     'accept': 'application/json',
                 }
             }).then((res)=>{
-                this.content = res
-                console.log(this.content)
+                this.$store.state.content = res
             })
+        },
+        getGameTime(time){
+            return (time/3600).toFixed(1)
         }
     },
     created(){
@@ -50,48 +68,105 @@ export default{
 }
 </script>
 <style>
-.player-bg{
-    background: black;
-    width: 100%;
-    height: 1000px;
+.player-rank{
+    float:left;
+    margin-top:20px;
+}
+.player-hData{
+    float:left;
+    color:white;
+    font-size:1.5rem;
+    margin-left:10px;
+    margin-top:10px;
+}
+.player-h{
+    float:left;
+    color:rgb(219, 219, 36);
+    font-weight: bolder;
+    margin-left:20px;
+    margin-top:20px;
+}
+i{
+    font-size:1.2rem;
+    font-weight: 600;
+}
+.player-zl{
+    color:rgba(223,223,223,1);
+    margin-top:90px;
+}
+.player-zl ul{
+    list-style: none;
+}
+.player-zl ul li{
+    float:left;
+    margin-left:45px;
 }
 .player-level{
     background:url(../assets/level.png);
     width:50px;
     height: 45px;
     background-size:100% 100%;
-    position:fixed;
-    left:300px;
-    top:63px;
-    font-size:1.2rem;
+    font-size:1.10rem;
     color:white;
     text-align: center;
     line-height: 50px;
-    font-weight: 300;
+    font-weight: 500;
+    float:right;
+    margin-right: 60px;
+    margin-top:-5px;
 }
 .player{
-    position: fixed;
     width:100%;
-    height:500px;
-    background: url(../assets/bg.png);
-    background-size:700px 400px;
-    background-repeat: no-repeat;
-    background-position: -90px -60px;
+    height:1000px;
+    background-color: black;
 }
-.player-container{
+.player-tabs{
+    position:absolute;
+    margin:0 auto;  
+    left:0;  
+    right:0; 
+    width:500px;
+}
+.player-tabs a{
+    color:white;
+    text-decoration: none;
+    font-size:1.1rem;
+    font-weight: 550;
+    margin-left:70px;
+    margin-top:50px;
+}
+
+.player-data{
+    width:100%;
+    height: 300px;
     position:fixed;
     margin:0 auto;  
     left:0;  
     right:0; 
-    width:95%;
-    height: 1000px;
+}
+.player-detail{
+    margin:0 auto;
+    width:500px;
+    height:250px;
+    z-index: -0;
+    background: url(../assets/bg.png);
+    background-size:550px;
+    background-repeat: no-repeat;
+    background-position: -70px -100px;
+    padding-top:10px;
+}
+.player-container{
+    float:left;
+    margin-top:50px;
+    width:100%;
 }
 .player-name{
     font-size:2rem;
-    margin-top:20px;
     font-weight:500;
-    margin-left:130px;
+    margin-left:210px;
     color:white;
+    margin-top:20px;
+    display: block;
 }
 .player-avatar{
     margin-top:20px;
@@ -99,11 +174,13 @@ export default{
     height: 100px;
     border-radius: 5px;
     border:3px solid grey;
+    float:left;
+    margin-left:50px;
 }
 .player-platform{
     font-size:1.5rem;
-    color:grey;
+    color:white;
     font-weight: bold;
-    margin-left:10px;
+    margin-left:180px;
 }
 </style>
