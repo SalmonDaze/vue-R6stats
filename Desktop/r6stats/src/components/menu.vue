@@ -9,7 +9,7 @@
         </ul>
         <div class="menu-hr menu-hr2"></div>
         <ul class='menu-list'>
-            <li><router-link to=''><i class='el-icon-info menu-icon'></i>关于</router-link></li>
+            <li><router-link :to="{name:'about'}"><i class='el-icon-info menu-icon'></i>关于</router-link></li>
         </ul>
     </div>
 </template>

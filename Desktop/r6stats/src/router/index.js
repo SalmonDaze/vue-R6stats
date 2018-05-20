@@ -5,6 +5,7 @@ import navHeader from '../components/navHeader.vue'
 import index from '../components/index.vue'
 import playerDetail from '../components/playerDetail.vue'
 import playerData from '../components/playerData.vue'
+import about from '../components/about.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
           component:playerData,
         }
       ]
+    },
+    {
+      path:'/about',
+      name:'about',
+      component:about,
     },
   ]
 })
