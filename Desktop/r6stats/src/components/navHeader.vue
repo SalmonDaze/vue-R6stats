@@ -1,8 +1,8 @@
 <template>
    <div class="nav">
-  <transition name="fade"><div class='overlayer' v-if='show' @click='show=false'></div></transition>
-    <div :class="{'nav-slide':show}">
-      <div class='nav-more' @click="showMenu">
+  <transition name="fade"><div class='overlayer' v-show='show' @click='show=false'></div></transition>
+    <div @click="showMenu">
+      <div class='nav-more'>
         <i class="el-icon-menu"></i>
       </div>
       <div class='nav-title'>
@@ -12,7 +12,7 @@
         <i class='el-icon-mobile-phone'></i>
       </div>
     </div>
-    <nav-menu :show-menus='show'></nav-menu>
+    <nav-menu :show-menus='show' @unshow='showMenu'></nav-menu>
     </div>
 </template>
 

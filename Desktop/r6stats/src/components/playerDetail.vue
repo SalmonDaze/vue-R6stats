@@ -33,7 +33,7 @@ import {mapState} from 'vuex'
 export default{
     data(){
         return{
-            loading:true,
+            loading:false,
             avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$store.state.playerId}/default_146_146.png`,
         }
     },
