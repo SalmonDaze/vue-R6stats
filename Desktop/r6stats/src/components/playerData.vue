@@ -1,14 +1,35 @@
 <template>
     <div class="playerData">
-        <div class='data-bomb'>
-            <h4>休闲模式</h4>
+        <div class='data-general'>
+            <h3>概况</h3>
+            <ul class='general-data'>
+                <li><div class='data-container'><h4>击杀</h4><p class='general-value'>{{content.data.stats.general.kills}}</p></div></li>
+                <li><div class='data-container'><h4>死亡</h4><p class='general-value'>{{content.data.stats.general.deaths}}</p></div></li>
+                <li><div class='data-container'><h4>助攻</h4><p class='general-value'>{{content.data.stats.general.assists}}</p></div></li>
+                <li><div class='data-container'><h4>爆头率</h4><p class='general-value'>{{(content.data.stats.general.headshot/content.data.stats.general.kills).toFixed(4)*100}}%</p></div></li>
+                <li><div class='data-container'><h4>救助</h4><p class='general-value'>{{content.data.stats.general.revives}}</p></div></li>
+                <li><div class='data-container'><h4>总局数</h4><p class='general-value'>{{content.data.stats.general.played}}</p></div></li>
+                <li><div class='data-container'><h4>胜利</h4><p class='general-value'>{{content.data.stats.general.won}}</p></div></li>
+                <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.general.lost}}</p></div></li>
+                <li><div class='data-container'><h4>自杀</h4><p class='general-value'>{{content.data.stats.general.suicides}}</p></div></li>
+                <li><div class='data-container'><h4>穿透击杀</h4><p class='general-value'>{{content.data.stats.general.penetrationKills}}</p></div></li>
+                <li><div class='data-container'><h4>近战击杀</h4><p class='general-value'>{{content.data.stats.general.meleeKills}}</p></div></li>
+                <li><div class='data-container'><h4>致盲击杀</h4><p class='general-value'>{{content.data.stats.general.blindKills}}</p></div></li>
+                <li><div class='data-container'><h4>拯救人质</h4><p class='general-value'>{{content.data.stats.general.hostageRescue}}</p></div></li>
+                <li><div class='data-container'><h4>保卫人质</h4><p class='general-value'>{{content.data.stats.general.hostageDefense}}</p></div></li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default{
-
+computed:mapState({
+        content:state=>state.content,
+        platform:state=>state.platform,
+        playername:state=>state.playername,
+    }),
 }
 </script>
 <style>
@@ -22,14 +43,42 @@ export default{
         right:0; 
         top:370px;
     }
-    .data-bomb{
+    .data-general{
         width:450px;
-        border:1px solid red;
-        height: 300px;
+        height: 340px;
         margin:0 auto;
+        background: rgb(27, 27, 27);
+        border-radius: 5px;
     }
-    .data-bomb h4{
-        text-align:center;
-        color:#409EFF;
+    .data-general h3{
+        margin-left:25px;
+        color:white;
+        padding-top:20px;
+        margin-right:320px;
+        padding-bottom: 5px;
+        border-bottom:1px solid grey;
+    }
+    .general-data{
+        color:white;
+        list-style-type: none;
+        margin-top:20px;
+        margin-left:5px;
+    }
+    .general-data li{
+        float:left;
+        text-align: center;
+        background: rgb(44, 44, 44);
+        margin-left:8px;
+        margin-top:5px;
+    }
+    .data-container{
+        background: rgb(44, 44, 44);
+        width:100px;
+        padding-top:5px;
+        padding-bottom: 5px;
+    }
+    .general-value{
+        margin-top:5px;
+        font-size:1.05rem;
     }
 </style>
