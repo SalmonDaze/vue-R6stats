@@ -76,7 +76,6 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
-                console.log(JSON.stringify(res))
             })
         },
         getGameTime(time){
@@ -139,7 +138,7 @@ i{
 }
 .player{
     width:100%;
-    height:1000px;
+    height:1250px;
     background-color: black;
 }
 .player-tabs{

@@ -19,6 +19,33 @@
                 <li><div class='data-container'><h4>保卫人质</h4><p class='general-value'>{{content.data.stats.general.hostageDefense}}</p></div></li>
             </ul>
         </div>
+        <div class='data-general data-bomb'>
+            <h3 style='color:#409EFF;border-bottom:1px solid #409EFF;'>炸弹模式</h3>
+            <ul class='general-data'>
+                <li><div class='data-container' style='background:#409EFF;'><h4>最高分数</h4><p class='general-value'>{{content.data.stats.bomb.bestScore}}</p></div></li>
+                <li><div class='data-container'><h4>总局数</h4><p class='general-value'>{{content.data.stats.bomb.played}}</p></div></li>
+                <li><div class='data-container'><h4>胜利</h4><p class='general-value'>{{content.data.stats.bomb.won}}</p></div></li>
+                <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.bomb.lost}}</p></div></li>
+            </ul>
+        </div>
+        <div class='data-general data-secure'>
+            <h3 style='color:#67C23A;border-bottom:1px solid #67C23A;'>肃清威胁</h3>
+            <ul class='general-data'>
+                <li><div class='data-container' style='background:#67C23A;'><h4>最高分数</h4><p class='general-value'>{{content.data.stats.secure.bestScore}}</p></div></li>
+                <li><div class='data-container'><h4>总局数</h4><p class='general-value'>{{content.data.stats.secure.played}}</p></div></li>
+                <li><div class='data-container'><h4>胜利</h4><p class='general-value'>{{content.data.stats.secure.won}}</p></div></li>
+                <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.secure.lost}}</p></div></li>
+            </ul>
+        </div>
+        <div class='data-general data-secure'>
+            <h3 style='color:#F56C6C;border-bottom:1px solid #F56C6C;'>解救人质</h3>
+            <ul class='general-data'>
+                <li><div class='data-container' style='background:#F56C6C;'><h4>最高分数</h4><p class='general-value'>{{content.data.stats.hostage.bestScore}}</p></div></li>
+                <li><div class='data-container'><h4>总局数</h4><p class='general-value'>{{content.data.stats.hostage.played}}</p></div></li>
+                <li><div class='data-container'><h4>胜利</h4><p class='general-value'>{{content.data.stats.hostage.won}}</p></div></li>
+                <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.hostage.lost}}</p></div></li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -48,7 +75,15 @@ computed:mapState({
         height: 340px;
         margin:0 auto;
         background: rgb(27, 27, 27);
-        border-radius: 5px;
+        border-radius: 3px;
+    }
+    .data-secure{
+        margin-top:20px;
+        height: 150px;
+    }
+    .data-bomb{
+        margin-top:20px;
+        height: 150px;
     }
     .data-general h3{
         margin-left:25px;
