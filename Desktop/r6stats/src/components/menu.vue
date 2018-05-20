@@ -1,5 +1,6 @@
 <template>
     <div class='menuContainer' :class="{'show':showMenus,'unshow':!showMenus}">
+        <span>菜单</span>
         <ul>
             <li></li>
             <li></li>

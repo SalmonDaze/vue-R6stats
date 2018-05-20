@@ -33,7 +33,7 @@ import {mapState} from 'vuex'
 export default{
     data(){
         return{
-            loading:false,
+            loading:true,
             avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$store.state.playerId}/default_146_146.png`,
         }
     },
@@ -100,6 +100,7 @@ i{
 .player-zl ul li{
     float:left;
     margin-left:45px;
+    line-height: 30px;
 }
 .player-level{
     background:url(../assets/level.png);

@@ -1,5 +1,9 @@
 <template>
-    <div class='index'>
+    <div class='index' v-loading.fullscreen="loading"
+        element-loading-text="少女祈祷中..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)"
+    >
         <nav-header page-title='战绩查询'></nav-header>
         <img src='../assets/logo.png' class='logo'>
         <el-input placeholder="请输入Uplay名字" v-model="name" class="input-with-select">
@@ -10,6 +14,15 @@
             </el-select>
         </el-input>
         <el-button plain class='search-button' @click='search'>查找</el-button>
+        <el-alert
+            v-show='showError'
+            title="获取数据失败"
+            type="error"
+            :closable="false"
+            class='search-error'
+            center
+            >
+        </el-alert>
     </div>
 </template>
 <script>
@@ -25,12 +38,15 @@ export default{
             name:'',
             select:'',
             content:[],
+            showError:false,
+            loading:false,
         }
     },
     computed:{
     },
     methods:{
         search(){
+            this.showError = false
             this.$store.state.playername = this.name
             switch(this.select){
                 case '1':
@@ -43,10 +59,11 @@ export default{
                 this.platform = 'xbox'
                 break
                 default:
-                console.log('请选择正确区服')
+                this.showError = true
                 return
                 break
             }
+            this.loading = true
             this.$http({
                 method: "GET",
                 url: `https://r6db.com/api/v2/players/?name=${this.name}&platform=${this.platform}`,
@@ -64,6 +81,9 @@ export default{
                     id:this.$store.state.playerId
                 }
             })
+            }).catch((err)=>{
+                this.showError = true
+                this.loading = false;
             })
             
         },
@@ -72,6 +92,14 @@ export default{
 }
 </script>
 <style>
+.search-error{
+    position:fixed;
+    width:200px;
+    right:0px;
+    top:470px;
+    left:0px;
+    margin:0 auto;
+}
 .logo{
     position: fixed;
     margin:0 auto;  
