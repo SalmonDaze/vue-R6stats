@@ -16,7 +16,7 @@
         <el-button plain class='search-button' @click='search'>查找</el-button>
         <el-alert
             v-show='showError'
-            title="获取数据失败"
+            :title="message"
             type="error"
             :closable="false"
             class='search-error'
@@ -40,6 +40,7 @@ export default{
             content:[],
             showError:false,
             loading:false,
+            message:'',
         }
     },
     computed:{
@@ -47,6 +48,9 @@ export default{
     methods:{
         search(){
             this.showError = false
+            if(name==""){
+                this.message = '请输入玩家ID'
+            }
             this.$store.state.playername = this.name
             switch(this.select){
                 case '1':
@@ -59,6 +63,7 @@ export default{
                 this.platform = 'xbox'
                 break
                 default:
+                this.message = '请选择服务器'
                 this.showError = true
                 return
                 break
@@ -76,14 +81,14 @@ export default{
                 this.$store.state.platform = this.platform
             }).then(()=>{
                 this.$router.push({
-                name:'player',
+                path:'/player',
                 query:{
                     id:this.$store.state.playerId
                 }
             })
             }).catch((err)=>{
+                this.message = '获取数据失败'
                 this.showError = true
-                this.loading = false;
             })
             
         },

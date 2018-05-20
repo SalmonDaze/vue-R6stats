@@ -45,6 +45,11 @@ export default{
         platform:state=>state.platform,
         playername:state=>state.playername,
     }),
+    mounted(){
+        this.$router.push({
+                name:'playerData',
+            })
+    },
     methods:{
         getData(){
             this.$http({

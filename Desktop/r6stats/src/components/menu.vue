@@ -3,7 +3,7 @@
         <span class='menu-back' @click='unshow'><i class='el-icon-circle-close-outline' style='margin-right:10px;font-size:20px'></i>返回</span>
         <div class="menu-hr"></div>
         <ul class='menu-list'>
-            <li><router-link to=''><i class='el-icon-search menu-icon'></i>查询战绩</router-link></li>
+            <li @click='init'><router-link :to="{name:'index'}"><i class='el-icon-search menu-icon'></i>查询战绩</router-link></li>
             <li><router-link to=''><i class='el-icon-upload2 menu-icon'></i>排行榜</router-link></li>
             <li><router-link to=''><i class='el-icon-star-on menu-icon'></i>我的收藏</router-link></li>
         </ul>
@@ -22,6 +22,9 @@ export default{
     methods:{
         unshow(){
             this.$emit('unshow')
+        },
+        init(){
+            this.$store.dispatch('initData')
         }
     }
 }

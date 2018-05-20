@@ -10,7 +10,7 @@
             <h3>关于作者</h3>
             <p>作者:<a href='https://github.com/SalmonDaze'>SalmonDaze</a></p>
             <p>项目源码:<a href='https://github.com/SalmonDaze/R6stats'>SalmonDaze</a></p>
-            <p>喜欢的朋友希望可以帮我点个star : )</p>
+            <p>希望喜欢的朋友可以帮我点个star : )</p>
         </div>
         <div class='about-hr'></div>
         <div class='about3'>
