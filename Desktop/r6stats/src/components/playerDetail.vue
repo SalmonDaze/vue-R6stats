@@ -79,6 +79,7 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
+                console.log(JSON.stringify(res))
             }).then(()=>{
                 this.checkFavorite()
             })
