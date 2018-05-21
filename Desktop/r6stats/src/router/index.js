@@ -6,6 +6,7 @@ import index from '../components/index.vue'
 import playerDetail from '../components/playerDetail.vue'
 import playerData from '../components/playerData.vue'
 import about from '../components/about.vue'
+import favorite from '../components/favorite.vue'
 
 Vue.use(Router)
 
@@ -33,5 +34,10 @@ export default new Router({
       name:'about',
       component:about,
     },
+    {
+      path:'/favorite',
+      name:'favorite',
+      component:favorite,
+    }
   ]
 })
