@@ -60,13 +60,10 @@ export default{
     computed:mapState({
         content:state=>state.content,
         rank:function(){
-            return  rankLabels[this.$store.state.content.data.rank.apac.rank]
+            return rankLabels[this.$store.state.content.data.rank.apac.rank]
         }
     }),
     mounted(){
-        this.$router.push({
-                name:'playerData',
-            })
         
     },
     methods:{

@@ -64,7 +64,7 @@ export default{
     top:-40px;
 }
 .favorite-container{
-    width:100%;
+    width:50%;
     float:left;
 }
 .favorite-list{
@@ -84,6 +84,7 @@ export default{
     height: 100px;
     background: rgba(240,240,240);
     border-radius:5px;
+    width:80%;
 }
 .favorite-userHead img{
     width:80px;
