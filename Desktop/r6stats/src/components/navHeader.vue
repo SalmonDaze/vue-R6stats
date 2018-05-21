@@ -8,8 +8,8 @@
       <div class='nav-title'>
         <span v-text='pageTitle'></span>
       </div>
-      <div class='nav-login'>
-        <i class='el-icon-star-off' v-show='showFavorite' @click='addFavorite'></i>
+      <div class='nav-login' @click='addFavorite'>
+        <i class='el-icon-star-off' v-show='showFavorite'></i>
       </div>
     </div>
     <nav-menu :show-menus='show' @unshow='showMenu'></nav-menu>
@@ -30,15 +30,21 @@ export default {
     }
   },
   created(){
-        
   },
   methods:{
     showMenu(){
       this.show = !this.show
     },
     addFavorite(){
-      let arr = []
-      this.$storage.set('user','Sa1MoNDz')
+      let arr = this.$storage.get('user')
+      let obj = {
+        name:this.$store.state.content.data.name,
+        id:this.$store.state.content.data.id,
+        avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$route.query.id}/default_146_146.png`,
+        platform:this.$store.state.content.data.platform,
+      }
+      arr.push(obj)
+      this.$storage.set('user',arr)
     }
   },
   components:{

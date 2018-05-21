@@ -39,9 +39,6 @@ export default{
             arr.push({name:'Sa1MoNDz',id:'fcce770a-3a0b-4eb4-81eb-1a18da452d20',
             avatar:'https://uplay-avatars.s3.amazonaws.com/fcce770a-3a0b-4eb4-81eb-1a18da452d20/default_146_146.png',
             platform:'PC'})
-            arr.push({name:'RailSword',id:'d268a49c-a004-4d41-831f-42a67d097a6e',
-            avatar:'https://uplay-avatars.s3.amazonaws.com/fcce770a-3a0b-4eb4-81eb-1a18da452d20/default_146_146.png',
-            platform:'PC'})
             this.$storage.set('user',arr)
         }
     },
