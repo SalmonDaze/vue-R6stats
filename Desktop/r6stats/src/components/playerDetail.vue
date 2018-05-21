@@ -9,8 +9,8 @@
                 <img class='player-avatar' :src='avatar'>
                 <div class='player-name'><span>{{playername}}</span><div class='player-level'>{{content.data.level}}</div></div>
                 <div class='player-rank'>
-                    <div class='player-h'>MMR</div><span class='player-hData'>{{parseInt(content.data.rank.apac.mmr)}}</span>
-                    <div class='player-h'>Rank</div><span class='player-hData'>{{(rank)}}</span>
+                    <div class='player-h'>MMR</div><span class='player-hData' style='width:50px;text-align:center;'>{{parseInt(content.data.rank.apac.mmr) | mmrfilters }}</span>
+                    <div class='player-h' style='margin-left:20px;'>Rank</div><span class='player-hData' style='width:80px;text-align:center;'>{{(rank)}}</span>
                 </div>
                 <div  class='player-zl'> 
                     <ul>
@@ -33,7 +33,7 @@
 <script>
 import navHeader from './navHeader.vue'
 import {mapState} from 'vuex'
-const rankLabels = {1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
+const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
 11:'白银II',12:'白银I',13:'黄金IV',14:'黄金III',15:'黄金II',16:'黄金I',17:'铂金III',18:'铂金II',19:'铂金I',20:'钻石I'}
 export default{
     data(){
@@ -47,6 +47,8 @@ export default{
         mmrfilters:function(mmr){
             if(mmr == 2500)
             return '-'
+            else
+            return mmr
         }
     },
     components:{
@@ -76,6 +78,7 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
+                console.log(JSON.stringify(res))
             })
         },
         getGameTime(time){
@@ -103,7 +106,7 @@ export default{
     float:left;
     color:rgb(219, 219, 36);
     font-weight: bolder;
-    margin-left:20px;
+    margin-left:60px;
     margin-top:20px;
 }
 i{
