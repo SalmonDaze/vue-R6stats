@@ -24,12 +24,12 @@
                 </div>
                 </div>
                     <div class='player-tabs'>
-                            <a>数据总览</a>
-                            <a>干员数据</a>
-                            <a>段位信息</a>
+                            <router-link to='/player/playerData'>数据总览</router-link>
+                            <router-link to=''>干员数据</router-link>
+                            <router-link to=''>段位信息</router-link>
                     </div>
-        </div>
-        <player-data v-show='s'></player-data>
+                </div>
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -107,6 +107,10 @@ export default{
 }
 </script>
 <style>
+.qqw{
+    width:100%;
+    height: 500px;
+}
 .player-rank{
     float:left;
     margin-top:20px;

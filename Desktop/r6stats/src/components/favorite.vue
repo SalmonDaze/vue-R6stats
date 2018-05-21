@@ -40,7 +40,7 @@ export default{
     methods:{
         linkUser(userId){
             this.$router.push({
-                path:'/player',
+                path:'/player/playerData',
                 query:{
                     id:userId
                 }

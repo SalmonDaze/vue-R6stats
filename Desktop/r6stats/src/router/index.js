@@ -11,6 +11,7 @@ import favorite from '../components/favorite.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -21,13 +22,13 @@ export default new Router({
       path:'/player',
       name:'player',
       component: playerDetail,
-      children:[
-        {
+      children:[{
           path:'playerData',
           name:'playerData',
-          component:playerData,
-        }
-      ]
+          components:{
+            default:playerData,
+          }
+        }]
     },
     {
       path:'/about',

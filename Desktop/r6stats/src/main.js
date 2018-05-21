@@ -6,11 +6,13 @@ import axios from 'axios'
 import elementui from 'element-ui'
 import store from './store/index'
 import storage from 'store'
+import VCharts from 'v-charts'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$storage = storage
 Vue.use(elementui)
+Vue.use(VCharts)
 new Vue({
   el: '#app',
   router,

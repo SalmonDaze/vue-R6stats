@@ -47,17 +47,22 @@
             </ul>
         </div>
         <div style='clear:both;'></div>
+        <data-charts></data-charts>
     </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
+import dataCharts from './dataCharts.vue'
 export default{
 computed:mapState({
         content:state=>state.content,
         platform:state=>state.platform,
         playername:state=>state.playername,
     }),
+    components:{
+        dataCharts,
+    }
 }
 </script>
 <style>

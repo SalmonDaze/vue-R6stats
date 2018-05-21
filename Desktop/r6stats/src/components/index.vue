@@ -90,7 +90,7 @@ export default{
                 this.$store.state.platform = this.platform
             }).then(()=>{
                 this.$router.push({
-                path:'/player',
+                path:'/player/playerData',
                 query:{
                     id:this.$store.state.playerId
                 }
