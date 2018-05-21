@@ -2,12 +2,14 @@
     <div class='player' v-loading ='loading'
         element-loading-text="少女祈祷中..."
         element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(0, 0, 0, 0.8)">
-        <nav-header :page-title="`${playername}的战绩`"></nav-header>
+        element-loading-background="rgba(0, 0, 0, 1)">
+        <nav-header :page-title="`${content.data.name}的战绩`" :show-favorite='favorite'></nav-header>
         <div class='player-container'>
             <div class='player-detail'>
                 <img class='player-avatar' :src='avatar'>
-                <div class='player-name'><span>{{playername}}</span><div class='player-level'>{{content.data.level}}</div></div>
+                <div class='player-name'><span>{{content.data.name}}</span><div class='player-level'>{{content.data.level}}</div>
+                
+                </div>
                 <div class='player-rank'>
                     <div class='player-h'>MMR</div><span class='player-hData' style='width:50px;text-align:center;'>{{parseInt(content.data.rank.apac.mmr) | mmrfilters }}</span>
                     <div class='player-h' style='margin-left:20px;'>Rank</div><span class='player-hData' style='width:80px;text-align:center;'>{{(rank)}}</span>
@@ -15,17 +17,17 @@
                 <div  class='player-zl'> 
                     <ul>
                         <li><i class="el-icon-time">游戏时间</i><p style='text-align:center'>{{getGameTime(content.data.stats.general.timePlayed)}}小时</p></li>
-                        <li><i class="el-icon-location">平台</i><p style='text-align:center'>{{platform.toUpperCase()}}</p></li>
+                        <li><i class="el-icon-location">平台</i><p style='text-align:center'>{{String(content.data.platform).toUpperCase()}}</p></li>
                         <li><i class="el-icon-view">K/D</i><p style='text-align:center'>{{(content.data.stats.general.kills/content.data.stats.general.deaths).toFixed(2)}}</p></li>
                         <li><i class="el-icon-star-off">胜率</i><p style='text-align:center'>{{(content.data.stats.general.won/content.data.stats.general.lost).toFixed(2)}}</p></li>
                     </ul>
                 </div>
-            </div>
-                <div class='player-tabs'>
-                        <router-link :to='{name:"playerData"}'>数据总览</router-link>
-                        <router-link to=''>干员数据</router-link>
-                        <router-link to=''>段位信息</router-link>
                 </div>
+                    <div class='player-tabs'>
+                            <router-link :to='{name:"playerData"}'>数据总览</router-link>
+                            <router-link to=''>干员数据</router-link>
+                            <router-link to=''>段位信息</router-link>
+                    </div>
         </div>
         <router-view></router-view>
     </div>
@@ -38,9 +40,10 @@ const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:
 export default{
     data(){
         return{
-            loading:false,
-            avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$store.state.playerId}/default_146_146.png`,
-            loading:false,
+            loading:true,
+            avatar:'',
+            favorite:true,
+            query:this.$route.query.id,
         }
     },
     filters:{
@@ -56,8 +59,6 @@ export default{
     },
     computed:mapState({
         content:state=>state.content,
-        platform:state=>state.platform,
-        playername:state=>state.playername,
         rank:function(){
             return  rankLabels[this.$store.state.content.data.rank.apac.rank]
         }
@@ -66,6 +67,7 @@ export default{
         this.$router.push({
                 name:'playerData',
             })
+        
     },
     methods:{
         getData(){
@@ -78,7 +80,6 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
-                console.log(JSON.stringify(res))
             })
         },
         getGameTime(time){
@@ -86,8 +87,14 @@ export default{
         },
     },
     created(){
+        this.avatar = `https://uplay-avatars.s3.amazonaws.com/${this.query}/default_146_146.png`
         this.getData()
     },
+    watch:{
+        content:function(){
+            this.loading = false
+        }
+    }
 }
 </script>
 <style>

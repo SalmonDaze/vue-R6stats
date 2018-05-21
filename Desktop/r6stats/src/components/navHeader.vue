@@ -1,15 +1,15 @@
 <template>
    <div class="nav">
   <transition name="fade"><div class='overlayer' v-show='show' @click='show=false'></div></transition>
-    <div @click="showMenu">
-      <div class='nav-more'>
+    <div>
+      <div class='nav-more' @click="showMenu">
         <i class="el-icon-menu"></i>
       </div>
       <div class='nav-title'>
         <span v-text='pageTitle'></span>
       </div>
       <div class='nav-login'>
-        <i class='el-icon-mobile-phone'></i>
+        <i class='el-icon-star-off' v-show='showFavorite' @click='addFavorite'></i>
       </div>
     </div>
     <nav-menu :show-menus='show' @unshow='showMenu'></nav-menu>
@@ -22,6 +22,7 @@ export default {
   name: 'navHeader',
   props:{
     pageTitle:String,
+    showFavorite:Boolean,
   },
   data () {
     return {
@@ -35,6 +36,10 @@ export default {
     showMenu(){
       this.show = !this.show
     },
+    addFavorite(){
+      let arr = []
+      this.$storage.set('user','Sa1MoNDz')
+    }
   },
   components:{
     navMenu
