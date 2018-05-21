@@ -3,7 +3,7 @@
         element-loading-text="少女祈祷中..."
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(0, 0, 0, 1)">
-        <nav-header :page-title="`${content.data.name}的战绩`" :show-favorite='favorite'></nav-header>
+        <nav-header :page-title="`${content.data.name}的战绩`" :is-favorated='favorite' :show-favorite='s' @changefavor='favorite=!favorite'></nav-header>
         <div class='player-container'>
             <div class='player-detail'>
                 <img class='player-avatar' :src='avatar'>
@@ -42,8 +42,9 @@ export default{
         return{
             loading:true,
             avatar:'',
-            favorite:true,
+            favorite:false,
             query:this.$route.query.id,
+            s:true,
         }
     },
     filters:{
@@ -64,7 +65,6 @@ export default{
         }
     }),
     mounted(){
-        
     },
     methods:{
         getData(){
@@ -77,11 +77,21 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
+            }).then(()=>{
+                this.checkFavorite()
             })
         },
         getGameTime(time){
             return (time/3600).toFixed(1)
         },
+        checkFavorite(){
+            let arr = this.$storage.get('user')
+            for(let i in arr){
+                if(arr[i].name==this.$store.state.content.data.name){
+                    this.favorite = true
+                }
+            }
+    },
     },
     created(){
         this.avatar = `https://uplay-avatars.s3.amazonaws.com/${this.query}/default_146_146.png`
@@ -90,7 +100,7 @@ export default{
     watch:{
         content:function(){
             this.loading = false
-        }
+        },
     }
 }
 </script>

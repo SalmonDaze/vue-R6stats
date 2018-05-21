@@ -1,9 +1,9 @@
 <template>
     <div class="favorite-container">
         <nav-header page-title='我的收藏'></nav-header>
-        <div>
+        <div class='fac'>
             <ul class="favorite-list">
-                <li v-for="user in userContent" @click='linkUser(user.id)' :key='user.id'>
+                <li v-for="user in userContent" @click='linkUser(user.id)'>
                     <div class="favorite-list-container">
                         <div class='favorite-userHead'>
                             <img :src='user.avatar'>
@@ -51,6 +51,9 @@ export default{
 }
 </script>
 <style>
+.fac{
+    width:100%;
+}
 .favorite-platform{
     position: relative;
     top:-25px;
@@ -64,11 +67,11 @@ export default{
     top:-40px;
 }
 .favorite-container{
-    width:50%;
+    width:100%;
     float:left;
 }
 .favorite-list{
-    width:90%;
+    width:100%;
     position:relative;
     right: 0;
     left: 0;
@@ -79,12 +82,14 @@ export default{
 }
 .favorite-list li{
     margin-top:30px;
+    margin-left:20px;
+    width:100%;
 }
 .favorite-list-container{
     height: 100px;
     background: rgba(240,240,240);
     border-radius:5px;
-    width:80%;
+    width:90%;
 }
 .favorite-userHead img{
     width:80px;

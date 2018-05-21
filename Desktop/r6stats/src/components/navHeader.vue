@@ -9,7 +9,7 @@
         <span v-text='pageTitle'></span>
       </div>
       <div class='nav-login' @click='addFavorite'>
-        <i class='el-icon-star-off' v-show='showFavorite'></i>
+        <i :class="[isFavorated ? 'el-icon-star-on' : 'el-icon-star-off' ]" v-show='showFavorite'></i>
       </div>
     </div>
     <nav-menu :show-menus='show' @unshow='showMenu'></nav-menu>
@@ -23,6 +23,7 @@ export default {
   props:{
     pageTitle:String,
     showFavorite:Boolean,
+    isFavorated:Boolean,
   },
   data () {
     return {
@@ -43,7 +44,17 @@ export default {
         avatar:`https://uplay-avatars.s3.amazonaws.com/${this.$route.query.id}/default_146_146.png`,
         platform:this.$store.state.content.data.platform,
       }
-      arr.push(obj)
+        this.$emit('changefavor')
+        if(this.isFavorated == true){
+          for(let i in arr){
+            if(arr[i].id==this.$store.state.content.data.id){
+              arr.splice(i,1)
+            }
+          }
+      }
+      else{
+        arr.push(obj)
+      }
       this.$storage.set('user',arr)
     }
   },
@@ -80,8 +91,8 @@ export default {
 }
 .nav-more{
   margin-left:20px;
-  width:40px;
-  height:40px;
+  width:60px;
+  height:60px;
   position:absolute;
   top:15px;
 }
@@ -89,7 +100,11 @@ export default {
   display:block;
   position:relative;
   top:10px;
-  width:100%;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:0 auto;
+  width:80%;
   text-align:center;
   font-size:1.3rem;
 }
