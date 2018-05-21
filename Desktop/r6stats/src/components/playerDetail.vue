@@ -24,15 +24,16 @@
                 </div>
                 </div>
                     <div class='player-tabs'>
-                            <router-link :to='{name:"playerData"}'>数据总览</router-link>
-                            <router-link to=''>干员数据</router-link>
-                            <router-link to=''>段位信息</router-link>
+                            <a>数据总览</a>
+                            <a>干员数据</a>
+                            <a>段位信息</a>
                     </div>
         </div>
-        <router-view></router-view>
+        <player-data v-show='s'></player-data>
     </div>
 </template>
 <script>
+import playerData from './playerData.vue'
 import navHeader from './navHeader.vue'
 import {mapState} from 'vuex'
 const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
@@ -50,13 +51,14 @@ export default{
     filters:{
         mmrfilters:function(mmr){
             if(mmr == 2500)
-            return '-'
+                return '-'
             else
-            return mmr
+                return mmr
         }
     },
     components:{
         navHeader,
+        playerData,
     },
     computed:mapState({
         content:state=>state.content,
@@ -155,8 +157,8 @@ i{
 }
 .player{
     width:100%;
-    height:1250px;
-    background-color: black;
+    min-height:1250px;
+    background-color:black;
 }
 .player-tabs{
     position:absolute;

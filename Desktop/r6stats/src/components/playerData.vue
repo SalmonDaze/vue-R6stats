@@ -46,6 +46,7 @@
                 <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.hostage.lost}}</p></div></li>
             </ul>
         </div>
+        <div style='clear:both;'></div>
     </div>
 </template>
 
