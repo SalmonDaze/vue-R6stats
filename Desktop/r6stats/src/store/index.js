@@ -97,15 +97,6 @@ export default new Vuex.Store({
     },
     mutations:{
         initData(state){
-            state.KD={
-                KD1:'',
-                KD2:'',
-                KD3:'',
-                KD4:'',
-                KD5:'',
-                KD6:'',
-                KD7:'',
-            },
             state.playerDetail=[],
             
             state.content={

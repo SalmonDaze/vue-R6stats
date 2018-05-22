@@ -1,6 +1,6 @@
 <template>
     <div class="about-container">
-        <nav-header page-title='关于'></nav-header>
+        <nav-header page-title='关于' style='position:fixed;'></nav-header>
         <div class='about'>
             <h3>关于项目</h3>
             <p>这是一个由<a href='http://apidocs.r6db.com/'>apidocs.r6db.com</a>提供API,基于Vue.js 2.0的项目</p>

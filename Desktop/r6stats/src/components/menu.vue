@@ -29,7 +29,7 @@ export default{
     }
 }
 </script>
-<style>
+<style >
 .menu-icon{
     margin-right:20px;
     font-weight: bold;

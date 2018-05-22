@@ -6,13 +6,13 @@
                 <li v-for="user in userContent" @click='linkUser(user.id)' :key='user.id'>
                     <div class="favorite-list-container">
                         <div class='favorite-userHead'>
-                            <img :src='user.avatar'>
+                            <img :src='user.avatar' :onerror="errorImg01">
                             <span class='favorite-name'>
                                 {{user.name}}
                             </span>
-                            <p class='favorite-platform'>
-                                平台:{{user.platform}}
-                            </p>
+                            <div class='favorite-platform'>
+                                <span>平台:{{user.platform}}</span>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -30,6 +30,7 @@ export default{
     data(){
         return{
             userContent:this.$storage.get('user'),
+            errorImg01:'this.src="' + require('../assets/default.jpg') + '"',
         }
     },
     computed:mapState({
@@ -55,19 +56,19 @@ export default{
     width:80%;
 }
 .favorite-platform{
-    position: relative;
-    top:-25px;
-    left:110px;
     font-size:1.2rem;
+    margin-left:110px;
+    margin-top:30px;
 }
 .favorite-name{
     font-size:1.5rem;
     position:relative;
-    left:25px;
-    top:-40px;
+    left:30px;
+    top:10px;
 }
 .favorite-container{
     width:100%;
+    float:left;
 }
 .favorite-list{
     width:100%;
@@ -96,5 +97,6 @@ export default{
     position: relative;
     top:10px;
     left:10px;
+    float:left;
 }
 </style>

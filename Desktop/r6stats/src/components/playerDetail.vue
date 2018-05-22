@@ -6,7 +6,7 @@
         <nav-header :page-title="`${content.data.name}的战绩`" :is-favorated='favorite' :show-favorite='s' @changefavor='favorite=!favorite'></nav-header>
         <div class='player-container'>
             <div class='player-detail'>
-                <img class='player-avatar' :src='avatar'>
+                <img class='player-avatar' :src='avatar' :onerror="this.errorImg01">
                 <div class='player-name'><span>{{content.data.name}}</span><div class='player-level'>{{content.data.level}}</div>
                 
                 </div>
@@ -37,7 +37,7 @@ import playerData from './playerData.vue'
 import navHeader from './navHeader.vue'
 import {mapState} from 'vuex'
 const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
-11:'白银II',12:'白银I',13:'黄金IV',14:'黄金III',15:'黄金II',16:'黄金I',17:'铂金III',18:'铂金II',19:'铂金I',20:'钻石I'}
+11:'白银II',12:'白银I',13:'黄金IV',14:'黄金III',15:'黄金II',16:'黄金I',17:'铂金III',18:'铂金II',19:'铂金I',20:'钻石'}
 export default{
     data(){
         return{
@@ -46,6 +46,7 @@ export default{
             favorite:false,
             query:this.$route.query.id,
             s:true,
+            errorImg01:'this.src="' + require('../assets/default.jpg') + '"',
         }
     },
     filters:{
@@ -81,7 +82,9 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
+                console.log(JSON.stringify(res))
             }).then(()=>{
+                
                 this.checkFavorite()
             })
         },
@@ -108,7 +111,7 @@ export default{
     }
 }
 </script>
-<style>
+<style >
 .qqw{
     width:100%;
     height: 500px;
@@ -163,7 +166,7 @@ i{
 }
 .player{
     width:100%;
-    min-height:1250px;
+    height:1250px;
     background-color:black;
 }
 .player-tabs{

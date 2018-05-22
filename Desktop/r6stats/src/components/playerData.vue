@@ -6,7 +6,7 @@
                 <li><div class='data-container'><h4>击杀</h4><p class='general-value'>{{content.data.stats.general.kills}}</p></div></li>
                 <li><div class='data-container'><h4>死亡</h4><p class='general-value'>{{content.data.stats.general.deaths}}</p></div></li>
                 <li><div class='data-container'><h4>助攻</h4><p class='general-value'>{{content.data.stats.general.assists}}</p></div></li>
-                <li><div class='data-container'><h4>爆头率</h4><p class='general-value'>{{(content.data.stats.general.headshot/content.data.stats.general.kills).toFixed(4)*100}}%</p></div></li>
+                <li><div class='data-container'><h4>爆头率</h4><p class='general-value'>{{String((content.data.stats.general.headshot/content.data.stats.general.kills)*100).slice(0,5)}}%</p></div></li>
                 <li><div class='data-container'><h4>救助</h4><p class='general-value'>{{content.data.stats.general.revives}}</p></div></li>
                 <li><div class='data-container'><h4>总局数</h4><p class='general-value'>{{content.data.stats.general.played}}</p></div></li>
                 <li><div class='data-container'><h4>胜利</h4><p class='general-value'>{{content.data.stats.general.won}}</p></div></li>
@@ -62,7 +62,7 @@ computed:mapState({
     }
 }
 </script>
-<style>
+<style >
     .playerData{
         width:90%;
         height: 500px;

@@ -26,10 +26,10 @@
             </div>
             <div class="lb-player">
                 <ul>
-                    <li v-for='(player,index) in leaderboard.data' :key='player.id'>
+                    <li v-for='(player,index) in leaderboard.data' :key='player.id' @click='linkUser(player.id)'>
                         <span style='float:left;font-size:1.3rem;padding-left:10px;padding-top:20px;width:20px;'>{{index+1}}</span>
                         <div class='lb-player-container'>
-                            <img :src=getavatar(player.id)><span class='lb-player-container-name'>{{player.name}}</span>
+                            <img :src=getavatar(player.id) :onerror="errorImg01"><span class='lb-player-container-name'>{{player.name}}</span>
                             <span class='lb-player-container-rate'>{{player.value.toFixed(2)}}</span>
                         </div>
                         
@@ -73,16 +73,17 @@ export default{
             value: 'ncsa_skill_adjusted',
             label: '北美地区'
         }],
+        errorImg01:'this.src="' + require('../assets/default.jpg') + '"',
         }
     },
     methods:{
-        getData(region,platform){
+        getData(){
             this.$http({
                 method: "GET",
                 url: `https://r6db.com/api/v2/leaderboards`,
                 params:{
-                    stat:region,
-                    platform:platform   
+                    stat:this.region,
+                    platform:this.platform   
                 },
                 headers: {
                     'x-app-id': '5e23d930-edd3-4240-b9a9-723c673fb649',
@@ -95,14 +96,22 @@ export default{
         },
         getavatar(playerId){
             return `https://uplay-avatars.s3.amazonaws.com/${playerId}/default_146_146.png`
-        }
+        },
+        linkUser(userId){
+            this.$router.push({
+                path:'/player/playerData',
+                query:{
+                    id:userId
+                }
+            })
+        },
     },
     created(){
         this.getData('apac_skill_adjusted','pc')
     }
 }
 </script>
-<style>
+<style >
 .lb-tabs{
     margin-top:15px;
     font-weight: 550;
@@ -139,7 +148,7 @@ export default{
     margin-left:20px;
 }
 .lb-player-container-rate{
-    width:180px;
+    width:70px;
     height: 30px; 
     position: absolute;
     margin-top:20px;
