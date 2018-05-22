@@ -67,6 +67,8 @@ export default{
         }
     }),
     mounted(){
+        this.getData()
+        console.log(JSON.stringify(this.$store.state.KD))
     },
     methods:{
         getData(){
@@ -79,7 +81,6 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
-                console.log(JSON.stringify(res))
             }).then(()=>{
                 this.checkFavorite()
             })
@@ -94,11 +95,11 @@ export default{
                     this.favorite = true
                 }
             }
-    },
+        },
     },
     created(){
         this.avatar = `https://uplay-avatars.s3.amazonaws.com/${this.query}/default_146_146.png`
-        this.getData()
+        
     },
     watch:{
         content:function(){

@@ -52,7 +52,7 @@ export default{
 </script>
 <style>
 .fac{
-    width:100%;
+    width:50%;
 }
 .favorite-platform{
     position: relative;
@@ -71,13 +71,13 @@ export default{
     float:left;
 }
 .favorite-list{
-    width:100%;
+    width:150%;
     position:relative;
     right: 0;
     left: 0;
     bottom: 0;
     margin:0 auto;
-    top:70px;
+    top:50px;
     list-style-type: none;
 }
 .favorite-list li{

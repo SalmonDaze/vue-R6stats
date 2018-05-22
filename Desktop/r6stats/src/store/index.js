@@ -73,6 +73,14 @@ export default new Vuex.Store({
                     ranked:'/',
                     causual:'/',
                 },
+                progressions:{
+                    stats:{
+                        casual:{
+                            kills:'',
+                            deaths:'',
+                        }
+                    }
+                },
                 
                 rank:{
                     apac:{}
@@ -82,8 +90,19 @@ export default new Vuex.Store({
     },
     mutations:{
         initData(state){
+            state.KD={
+                KD1:'',
+                KD2:'',
+                KD3:'',
+                KD4:'',
+                KD5:'',
+                KD6:'',
+                KD7:'',
+            },
             state.playerDetail=[],
+            
             state.content={
+                
                 data:{
                     playerId:'',
                     platform:'',
@@ -163,6 +182,9 @@ export default new Vuex.Store({
         initData({commit}){
             commit('initData')
             }
-        }
+        },
+    getters:{
+        },
+
 
 })

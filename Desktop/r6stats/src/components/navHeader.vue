@@ -88,6 +88,7 @@ export default {
   height:50px;
   background:rgba(255,255,255,255.95);
   box-shadow: 0 0 4px rgba(0,0,0,0.25);
+  top:0px;
 }
 .nav-more{
   margin-left:20px;
