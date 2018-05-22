@@ -30,7 +30,9 @@
                         <span style='float:left;font-size:1.3rem;padding-left:10px;padding-top:20px;width:20px;'>{{index+1}}</span>
                         <div class='lb-player-container'>
                             <img :src=getavatar(player.id)><span class='lb-player-container-name'>{{player.name}}</span>
+                            <span class='lb-player-container-rate'>{{player.value.toFixed(2)}}</span>
                         </div>
+                        
                     </li>
                 </ul>
             </div>
@@ -129,7 +131,19 @@ export default{
     margin-left:40px;
 }
 .lb-player-container-name{
-    width:100px;
-    height: 30px;   
+    width:180px;
+    height: 30px; 
+    position: absolute;
+    margin-top:20px;
+    font-size:1.2rem;
+    margin-left:20px;
+}
+.lb-player-container-rate{
+    width:180px;
+    height: 30px; 
+    position: absolute;
+    margin-top:20px;
+    font-size:1.2rem;
+    margin-left:250px;
 }
 </style>
