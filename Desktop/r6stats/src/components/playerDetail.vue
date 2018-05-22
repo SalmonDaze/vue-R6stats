@@ -24,16 +24,20 @@
                 </div>
                 </div>
                     <div class='player-tabs'>
-                            <router-link to='/player/playerData'>数据总览</router-link>
-                            <router-link to=''>干员数据</router-link>
-                            <router-link to=''>段位信息</router-link>
+                        <button v-for='tab in buttontabs' :key='tab.value' :class="['tab-button',{active:currentTabComponent == tab.value}]" @click='currentTabComponent = tab.value'
+                        >{{tab.name}}</button>
                     </div>
                 </div>
-        <router-view></router-view>
+                <component
+                    :is="currentTabComponent"
+                    class="tab"
+                ></component>
+        
     </div>
 </template>
 <script>
 import playerData from './playerData.vue'
+import operator from './operator.vue'
 import navHeader from './navHeader.vue'
 import {mapState} from 'vuex'
 const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
@@ -47,6 +51,16 @@ export default{
             query:this.$route.query.id,
             s:true,
             errorImg01:'this.src="' + require('../assets/default.jpg') + '"',
+            currentTabComponent : playerData,
+            buttontabs:[{
+                name:'数据总览',
+                value:'playerData'}
+            ,{
+                name:'干员数据',
+                value:'operator'}
+            ,{
+                name:'段位信息',
+                value:'rankInfo'}],
         }
     },
     filters:{
@@ -60,6 +74,7 @@ export default{
     components:{
         navHeader,
         playerData,
+        operator,
     },
     computed:mapState({
         content:state=>state.content,
@@ -166,25 +181,31 @@ i{
 }
 .player{
     width:100%;
-    height:1250px;
     background-color:black;
 }
 .player-tabs{
-    position:absolute;
-    margin:0 auto;  
-    left:0;  
-    right:0; 
+    position: relative;
+    left:60px;
+    right:0;
+    bottom:0;
+    margin:0 auto;
     width:500px;
-}
-.player-tabs a{
+    }
+    .tab-button.active{
+        background: rgb(65, 65, 65);
+    }
+.player-tabs button{
+    padding: 6px 10px;
+    width:130px;
+    height: 40px;
+    border: 1px solid rgb(14, 14, 14);
+    cursor: pointer;
+    background: #141414;
     color:white;
-    text-decoration: none;
-    font-size:1.1rem;
-    font-weight: 550;
-    margin-left:70px;
-    margin-top:50px;
 }
-
+.plaer-tabs button:active {
+  background: #ffffff;
+}
 .player-data{
     width:100%;
     height: 300px;
@@ -208,6 +229,8 @@ i{
     float:left;
     margin-top:50px;
     width:100%;
+    height:300px;
+    background: black;
 }
 .player-name{
     font-size:2rem;

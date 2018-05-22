@@ -8,6 +8,7 @@ import playerData from '../components/playerData.vue'
 import about from '../components/about.vue'
 import favorite from '../components/favorite.vue'
 import leaderboard from '../components/leaderboard.vue'
+import operator from '../components/operator.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -25,9 +26,13 @@ export default new Router({
       children:[{
           path:'playerData',
           name:'playerData',
-          components:{
-            default:playerData,
-          }
+          component:playerData,
+          
+        },
+        {
+          path:'operator',
+          name:'operator',
+          component:operator
         }]
     },
     {

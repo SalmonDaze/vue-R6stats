@@ -107,6 +107,7 @@ export default new Vuex.Store({
                     name:'',
                     level:'/',
                     stats:{
+                        operator:{},
                         bomb:{
                             bestScore:0,
                             lost:0,

@@ -1,4 +1,5 @@
 <template>
+<div class='playerData-container'>
     <div class="playerData">
         <div class='data-general'>
             <h3>概况</h3>
@@ -46,8 +47,8 @@
                 <li><div class='data-container'><h4>失败</h4><p class='general-value'>{{content.data.stats.hostage.lost}}</p></div></li>
             </ul>
         </div>
-        <div style='clear:both;'></div>
     </div>
+</div>
 </template>
 
 <script>
@@ -63,6 +64,11 @@ computed:mapState({
 }
 </script>
 <style >
+    .playerData-container{
+        background: black;
+        width: 100%;
+        height: 1250px;;
+    }
     .playerData{
         width:90%;
         height: 500px;

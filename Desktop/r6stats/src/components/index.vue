@@ -125,6 +125,9 @@ export default{
     height: 100%;
     width:100%;
 }
+.el-server{
+    width:100px;
+}
 .input-with-select{
     position: fixed;
     width:350px;
