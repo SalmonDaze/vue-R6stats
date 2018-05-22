@@ -4,7 +4,7 @@
         <div class="menu-hr"></div>
         <ul class='menu-list'>
             <li @click='init'><router-link :to="{name:'index'}"><i class='el-icon-search menu-icon'></i>查询战绩</router-link></li>
-            <li><router-link to=""><i class='el-icon-upload2 menu-icon'></i>排行榜</router-link></li>
+            <li><router-link :to="{name:'leaderboard'}"><i class='el-icon-upload2 menu-icon'></i>排行榜</router-link></li>
             <li><router-link :to="{name:'favorite'}"><i class='el-icon-star-on menu-icon'></i>我的收藏</router-link></li>
         </ul>
         <div class="menu-hr menu-hr2"></div>

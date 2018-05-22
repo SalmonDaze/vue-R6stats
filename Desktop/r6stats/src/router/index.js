@@ -7,7 +7,7 @@ import playerDetail from '../components/playerDetail.vue'
 import playerData from '../components/playerData.vue'
 import about from '../components/about.vue'
 import favorite from '../components/favorite.vue'
-
+import leaderboard from '../components/leaderboard.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +39,11 @@ export default new Router({
       path:'/favorite',
       name:'favorite',
       component:favorite,
+    },
+    {
+      path:'/leaderboard',
+      name:'leaderboard',
+      component:leaderboard
     }
   ]
 })

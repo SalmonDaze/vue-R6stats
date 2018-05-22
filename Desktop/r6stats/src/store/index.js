@@ -4,6 +4,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
+        leaderboard:{
+            id:'',
+            userid:'',
+            placement:'',
+            platform:'',
+            value:'',
+        },
         playerDetail:[],
         content:{
             data:{
