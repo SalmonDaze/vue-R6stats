@@ -7,7 +7,7 @@
         <div class='player-container'>
             <div class='player-detail'>
                 <img class='player-avatar' :src='avatar' :onerror="this.errorImg01">
-                <div class='player-name'><span>{{content.data.name}}</span><div class='player-level'>{{content.data.level}}</div>
+                <div class='player-name'><span>{{content.data.name}}<div class='player-level'>{{content.data.level}}</div></span>
                 
                 </div>
                 <div class='player-rank'>
@@ -38,6 +38,7 @@
 <script>
 import playerData from './playerData.vue'
 import operator from './operator.vue'
+import rankInfo from './rankInfo.vue'
 import navHeader from './navHeader.vue'
 import {mapState} from 'vuex'
 const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
@@ -75,6 +76,7 @@ export default{
         navHeader,
         playerData,
         operator,
+        rankInfo,
     },
     computed:mapState({
         content:state=>state.content,
@@ -84,7 +86,6 @@ export default{
     }),
     mounted(){
         this.getData()
-        console.log(JSON.stringify(this.$store.state.KD))
     },
     methods:{
         getData(){
@@ -97,7 +98,6 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.content = res
-                console.log(JSON.stringify(res))
             }).then(()=>{
                 
                 this.checkFavorite()

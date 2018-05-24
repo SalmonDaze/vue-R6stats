@@ -31,7 +31,7 @@
                         {{operator.deaths}}
                     </div>
                     <div class='opr opr-kd'>
-                        {{String(operator.kills/operator.deaths).slice(0,4)}}
+                        {{operator.deaths==0?'0':String(operator.kills/operator.deaths).slice(0,4)}}
                     </div>
                 </li>
             </ul>
@@ -173,7 +173,7 @@ export default {
 .opr-kd{
     float:left;
     text-align: center;
-    width:50px;
+    width:30px;
 }
 .high-rate{
     color:green;
