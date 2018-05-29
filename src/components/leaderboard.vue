@@ -1,5 +1,8 @@
 <template>
-    <div class="lb-container">
+    <div class="lb-container" v-loading.fullscreen ='loading'
+        element-loading-text="少女祈祷中..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 1)">
         <nav-header page-title='排行榜' :show-favorite="false"></nav-header>
         <div class="lb-select">
             <el-select v-model="platform" placeholder="pc" @change='getData'>
@@ -32,7 +35,6 @@
                             <img :src=getavatar(player.id) :onerror="errorImg01"><span class='lb-player-container-name'>{{player.name}}</span>
                             <span class='lb-player-container-rate'>{{player.value.toFixed(2)}}</span>
                         </div>
-                        
                     </li>
                 </ul>
             </div>
@@ -74,6 +76,7 @@ export default{
             label: '北美地区'
         }],
         errorImg01:'this.src="' + require('../assets/default.jpg') + '"',
+        loading:true,
         }
     },
     methods:{
@@ -91,7 +94,7 @@ export default{
                 }
             }).then((res)=>{
                 this.$store.state.leaderboard = res
-                console.log(JSON.stringify(this.$store.state.leaderboard))
+                this.loading= false
             })
         },
         getavatar(playerId){

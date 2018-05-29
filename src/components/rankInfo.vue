@@ -134,7 +134,7 @@ export default{
     z-index: -1;
 }
 .rank-season{
-    width:80%;
+    width:90%;
     position: absolute;
     top:8px;
     left:0;
@@ -165,6 +165,7 @@ export default{
     margin-right:70px;
     margin-top:15px;
     text-align:right;
+    font-size:16px;
 }
 .rank-apac{
     width:33%;
