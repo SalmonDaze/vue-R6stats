@@ -16,7 +16,7 @@
                         <p>胜利 {{content.data.rank.emea.wins}}</p>
                         <p>失败 {{content.data.rank.emea.losses}}</p>
                         <p style='font-size:10px;'>MMR {{content.data.rank.emea.mmr.toFixed(0)}}</p>
-                        <p style='font-size:10px;'>段位 {{rankLabels[content.data.rank.emea.rankemea]}}</p>
+                        <p style='font-size:10px;'>段位 {{rankLabels[content.data.rank.emea.rank]}}</p>
                     </div>
                     <div class='rank-season-container rank-ncsa'>
                         <h3>北美</h3>
