@@ -1,29 +1,55 @@
 <template>
     <div class="rank-container">
         <ul class='rank-season'>
+            <li>
+                <div>
+                    <div class='rank-season-container rank-apac'>
+                        <h2>当前赛季</h2>
+                        <h3>亚洲</h3>
+                        <p>胜利 {{content.data.rank.apac.wins}}</p>
+                        <p>失败 {{content.data.rank.apac.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{content.data.rank.apac.mmr.toFixed(0)}}</p>
+                        <p style='font-size:10px;'>段位 {{rankLabels[content.data.rank.apac.rank]}}</p>
+                    </div>
+                    <div class='rank-season-container rank-emea'>
+                        <h3>欧洲</h3>
+                        <p>胜利 {{content.data.rank.emea.wins}}</p>
+                        <p>失败 {{content.data.rank.emea.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{content.data.rank.emea.mmr.toFixed(0)}}</p>
+                        <p style='font-size:10px;'>段位 {{rankLabels[content.data.rank.emea.rankemea]}}</p>
+                    </div>
+                    <div class='rank-season-container rank-ncsa'>
+                        <h3>北美</h3>
+                        <p>胜利 {{content.data.rank.ncsa.wins}}</p>
+                        <p>失败 {{content.data.rank.ncsa.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{content.data.rank.ncsa.mmr.toFixed(0)}}</p>
+                        <p style='font-size:10px;'>段位 {{rankLabels[content.data.rank.ncsa.rank]}}</p>
+                    </div>
+                </div>
+            </li>
             <li v-for='(rank,index) in rankArr'>
                 <div>
                     <div class='rank-season-container rank-apac'>
                         <h2>第{{Trans[index+1]}}赛季</h2>
                         <h3>亚洲</h3>
                         <p>胜利 {{rank.apac.wins}}</p>
-                        <p>失败 {{rank.apac.wins}}</p>
-                        <p>MMR {{rank.apac.losses}}</p>
-                        <p>段位 {{rank.apac.rankapac}}</p>
+                        <p>失败 {{rank.apac.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{rank.apac.mmr}}</p>
+                        <p style='font-size:10px;'>段位 {{rank.apac.rankapac}}</p>
                     </div>
                     <div class='rank-season-container rank-emea'>
                         <h3>欧洲</h3>
                         <p>胜利 {{rank.emea.wins}}</p>
-                        <p>失败 {{rank.emea.wins}}</p>
-                        <p>MMR {{rank.emea.losses}}</p>
-                        <p>段位 {{rank.emea.rankemea}}</p>
+                        <p>失败 {{rank.emea.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{rank.emea.mmr}}</p>
+                        <p style='font-size:10px;'>段位 {{rank.emea.rankemea}}</p>
                     </div>
                     <div class='rank-season-container rank-ncsa'>
                         <h3>北美</h3>
                         <p>胜利 {{rank.ncsa.wins}}</p>
-                        <p>失败 {{rank.ncsa.wins}}</p>
-                        <p>MMR {{rank.ncsa.losses}}</p>
-                        <p>段位 {{rank.ncsa.rankncsa}}</p>
+                        <p>失败 {{rank.ncsa.losses}}</p>
+                        <p style='font-size:10px;'>MMR {{rank.ncsa.mmr}}</p>
+                        <p style='font-size:10px;'>段位 {{rank.ncsa.rankncsa}}</p>
                     </div>
                 </div>
             </li>
@@ -31,6 +57,7 @@
     </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 const rankLabels = {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
 11:'白银II',12:'白银I',13:'黄金IV',14:'黄金III',15:'黄金II',16:'黄金I',17:'铂金III',18:'铂金II',19:'铂金I',20:'钻石'}
 const Trans = {1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九',10:'十',11:'十一',}
@@ -38,11 +65,14 @@ export default{
     data(){
         return{
             rankArr:[],
-            Trans : {1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九',10:'十',11:'十一',}
+            Trans : {1:'一',2:'二',3:'三',4:'四',5:'五',6:'六',7:'七',8:'八',9:'九',10:'十',11:'十一',},
+            rankLabels : {0:'-',1:'紫铜IV',2:'紫铜III',3:'紫铜II',4:'紫铜I',5:'青铜IV',6:'青铜III',7:'青铜II',8:'青铜I',9:'白银IV',10:'白银III',
+11:'白银II',12:'白银I',13:'黄金IV',14:'黄金III',15:'黄金II',16:'黄金I',17:'铂金III',18:'铂金II',19:'铂金I',20:'钻石'},
         }
     },
-    computed:{
-    },
+    computed:mapState({
+        content:state=>state.content,
+    }),
     methods:{
         rankArry(){
             let rankArry = []
@@ -93,7 +123,7 @@ export default{
 .rank-container{
     width:100%;
     background: black;
-    height: 2800px;
+    height: 3200px;
     float:left;
     position: absolute;
     top:348px;
@@ -155,6 +185,6 @@ export default{
 .rank-ncsa p{
     color:white;
     text-align:right;
-    margin-left:50px;
+    margin-left:30px;
 }
 </style>
