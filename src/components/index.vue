@@ -98,6 +98,7 @@ export default{
             }).catch((err)=>{
                 this.message = '获取数据失败'
                 this.showError = true
+                this.loading = false 
             })
             
         },
