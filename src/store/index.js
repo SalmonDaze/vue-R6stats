@@ -90,7 +90,9 @@ export default new Vuex.Store({
                 },
                 
                 rank:{
-                    apac:{}
+                    apac:{},
+                    emea:{},
+                    ncsa:{},
                 }
             },
         },
