@@ -12,6 +12,7 @@
 <a href='https://github.com/vuejs/vue-cli'><img src='https://img.shields.io/badge/vue--cli-2.4.0-blue.svg'></a>
 </p>
 <p align='center'>项目演示页:<a href='https://salmondaze.github.io/vue-R6stats'>Demo</a></p>
+<p align='center'><s>由于某些不可抗力，请在width大于650px的手机模式下浏览(小声</s></p>
 
 ### 已实现的功能
 <p>1.搜索玩家战绩</p>
