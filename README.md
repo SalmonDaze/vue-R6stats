@@ -1,4 +1,4 @@
-# r6stats
+# vue-R6stats
 
 ### 此项目为基于Vue 2.0的彩虹六号:围攻(Tom Clancy's Rainbow Six Siege)的战绩查询WebApp
 <p align='center'>
