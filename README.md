@@ -33,7 +33,6 @@ npm install
 npm run dev
 
 # 打包发布
-
 npm run build
 ```
 
