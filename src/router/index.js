@@ -15,7 +15,7 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/vue-R6stats/',
+      path: '/',
       name: 'index',
       component: index,
     },

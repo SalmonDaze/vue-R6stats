@@ -10,7 +10,6 @@ import navMenu from './components/menu.vue'
 import index from './components/index.vue'
 export default {
   name: 'App',
-  components:{index},
 }
 </script>
 
